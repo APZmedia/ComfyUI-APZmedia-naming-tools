@@ -2,7 +2,7 @@
 name = "APZmedia Clean File Name Nodes"
 description = "A set of custom nodes to build and sanitize text to make clean file names from strings."
 version = "1.6.5"
-license = "MIT"
+license = { text = "MIT License" }
 dependencies = ["unidecode"]
 
 [project.urls]
