@@ -24,18 +24,11 @@ This package provides a comprehensive set of naming tools for ComfyUI that strea
 - **Delimiter Control**: Specify custom delimiters (hyphen, underscore, etc.)
 - **Standardized Naming**: Maintain consistent file naming across projects
 
-### 4. **APZmedia Primitive Selector**
-- **Multiple Selection Types**: Text, Number, Date, and Custom options
+### 4. **APZmedia Primitive**
+- **Multiple Types**: Text, Number, and Date outputs
 - **Date Formatting**: Multiple date formats (YYYY-MM-DD, MM-DD-YYYY, DD-MM-YYYY, YYYYMMDD)
-- **Custom Options**: Dropdown from comma-separated options
-- **Formatting Control**: Prefix, suffix, and separator options
-- **Dual Output**: Raw selection and formatted text
-
-### 5. **APZmedia Simple Primitive**
-- **Basic Value Types**: Text, Number, Float, and Boolean inputs
-- **Multiple Outputs**: All input types as separate outputs
-- **Boolean Conversion**: Converts boolean to text representation
-- **Simple Interface**: Straightforward primitive value selection
+- **Simple Interface**: Single node for all primitive value types
+- **String Output**: All values output as strings for easy use in filenames
 
 ## Input and Output Types
 
@@ -81,34 +74,15 @@ This package provides a comprehensive set of naming tools for ComfyUI that strea
 - **Output Types**:
   - `concatenated_name` (STRING): The concatenated filename with selected delimiter
 
-### **APZmedia Primitive Selector**
+### **APZmedia Primitive**
 - **Input Types**:
-  - `selection_type` (TEXT/NUMBER/DATE/CUSTOM): Type of selection to make
-  - `text_selection` (STRING): Text input for text type
-  - `number_selection` (INT): Number input (1-9999) for number type
+  - `type` (TEXT/NUMBER/DATE): Type of value to output
+  - `text` (STRING): Text input for text type
+  - `number` (INT): Number input (1-9999) for number type
   - `date_format` (YYYY-MM-DD/MM-DD-YYYY/DD-MM-YYYY/YYYYMMDD): Date format for date type
-  - `custom_options` (STRING): Comma-separated options for custom type
-  - `custom_selection` (STRING): Selected option from custom options
-  - `prefix` (STRING): Text to add before selection
-  - `suffix` (STRING): Text to add after selection
-  - `separator` (STRING): Character to separate prefix/suffix (default: `_`)
   
 - **Output Types**:
-  - `selection_text` (STRING): The raw selected value
-  - `formatted_text` (STRING): Selection with prefix/suffix and separator
-
-### **APZmedia Simple Primitive**
-- **Input Types**:
-  - `text_value` (STRING): Text input value
-  - `number_value` (INT): Number input value (1-9999)
-  - `float_value` (FLOAT): Float input value (0.0-1000.0)
-  - `boolean_value` (BOOLEAN): Boolean input value
-  
-- **Output Types**:
-  - `text_output` (STRING): Text value output
-  - `number_output` (INT): Number value output
-  - `float_output` (FLOAT): Float value output
-  - `boolean_text` (STRING): Boolean converted to text ("true"/"false")
+  - `value` (STRING): The selected value as a string
 
 ## How They Work
 
@@ -132,29 +106,22 @@ This package provides a comprehensive set of naming tools for ComfyUI that strea
 3. **Delimiter Application**: Joins segments using the specified delimiter
 4. **Output Generation**: Returns the concatenated filename
 
-### **APZmedia Primitive Selector**
-1. **Type Selection**: Determines the base value based on selection type
-2. **Value Processing**: Handles text, number, date, or custom selection logic
-3. **Formatting**: Applies prefix, suffix, and separator if specified
-4. **Dual Output**: Returns both raw and formatted versions
-
-### **APZmedia Simple Primitive**
-1. **Value Passing**: Directly passes input values to outputs
-2. **Type Conversion**: Converts boolean to text representation
-3. **Multiple Outputs**: Provides all input types as separate outputs
+### **APZmedia Primitive**
+1. **Type Selection**: Determines the output based on the selected type
+2. **Value Processing**: Handles text, number, or date logic
+3. **String Conversion**: Converts all values to strings for filename use
 
 ## Use Cases
 
 ### **Filename Tagging**
-- Use **Primitive Selector** for date stamps: `2024-01-15`
-- Use **Simple Primitive** for version numbers: `v1`, `v2`
+- Use **Primitive** for date stamps: `2024-01-15`
+- Use **Primitive** for version numbers: `1`, `2`
 - Use **Clean File Name** to sanitize user input
 - Use **Standard Filename Builder** for structured naming
 
 ### **Path Generation**
 - Use **Generate File Path** for VFX pipeline structures
-- Combine with **Primitive Selector** for dynamic path components
-- Use **Simple Primitive** for basic path elements
+- Combine with **Primitive** for dynamic path components
 
 ### **Workflow Integration**
 - Chain multiple nodes for complex naming systems

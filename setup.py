@@ -13,8 +13,7 @@ setup(
             'clean_file_name_node = nodes.APZnamefromtext:CleanFileNameNode',
             'generate_file_path_node = nodes.APZgeneratePathNode:GenerateFilePathNode',  # Corrected this line
             'standard_name_node = nodes.APZfileNameBuilder:APZmediaStandardFilenameBuilder',
-            'primitive_selector_node = nodes.APZprimitiveSelector:APZmediaPrimitiveSelector',
-            'simple_primitive_node = nodes.APZsimplePrimitive:APZmediaSimplePrimitive'
+            'primitive_node = nodes.APZprimitive:APZmediaPrimitive'
         ],
     },
     author="Pablo Apiolazza",
