@@ -76,7 +76,7 @@ This package provides a comprehensive set of naming tools for ComfyUI that strea
 
 ### **APZmedia Primitive**
 - **Input Types**:
-  - `type` (TEXT/NUMBER/DATE): Type of value to output
+  - `combo` (TEXT/NUMBER/DATE): Type of value to output (dropdown selection)
   - `text` (STRING): Text input for text type
   - `number` (INT): Number input (1-9999) for number type
   - `date_format` (YYYY-MM-DD/MM-DD-YYYY/DD-MM-YYYY/YYYYMMDD): Date format for date type

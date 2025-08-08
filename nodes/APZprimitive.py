@@ -12,7 +12,7 @@ class APZmediaPrimitive:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "type": (["text", "number", "date"], {"default": "text"}),
+                "combo": (["text", "number", "date"], {"default": "text"}),
                 "text": ("STRING", {"multiline": False, "default": ""}),
                 "number": ("INT", {"default": 1, "min": 1, "max": 9999, "step": 1}),
                 "date_format": (["YYYY-MM-DD", "MM-DD-YYYY", "DD-MM-YYYY", "YYYYMMDD"], {"default": "YYYY-MM-DD"}),
@@ -23,12 +23,12 @@ class APZmediaPrimitive:
     FUNCTION = "get_value"
     CATEGORY = "APZmedia"
 
-    def get_value(self, type, text, number, date_format):
-        if type == "text":
+    def get_value(self, combo, text, number, date_format):
+        if combo == "text":
             return (text,)
-        elif type == "number":
+        elif combo == "number":
             return (str(number),)
-        elif type == "date":
+        elif combo == "date":
             today = datetime.datetime.now()
             if date_format == "YYYY-MM-DD":
                 return (today.strftime("%Y-%m-%d"),)
