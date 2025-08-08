@@ -28,7 +28,7 @@ class APZmediaStandardFilenameBuilder:
 
     FUNCTION = "concatenate_names"
 
-    CATEGORY = "Name Concatenation"
+    CATEGORY = "APZmedia"
 
     def concatenate_names(self, project_name, episode_name, shot_name, pass_name, delimiter,
                           toggle_project_name, toggle_episode_name, toggle_shot_name, toggle_pass_name):
@@ -60,12 +60,3 @@ class APZmediaStandardFilenameBuilder:
         Determine if the node should be re-executed.
         """
         return f"{project_name}_{episode_name}_{shot_name}_{pass_name}_{delimiter}_{toggle_project_name}_{toggle_episode_name}_{toggle_shot_name}_{toggle_pass_name}"
-
-
-NODE_CLASS_MAPPINGS = {
-    "APZmediaStandardFilenameBuilder": APZmediaStandardFilenameBuilder,
-}
-
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "APZmediaStandardFilenameBuilder": "APZmedia Standard Filename Builder",
-}

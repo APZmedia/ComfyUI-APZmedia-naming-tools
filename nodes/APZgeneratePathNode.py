@@ -31,7 +31,7 @@ class GenerateFilePathNode:
 
     FUNCTION = "generate_path"
 
-    CATEGORY = "File Path Generation"
+    CATEGORY = "APZmedia"
 
     def generate_path(self, root_folder, project_name, episode_name, shot_name, pass_name,
                       toggle_root_folder, toggle_project_name, toggle_episode_name, toggle_shot_name, toggle_pass_name):
@@ -65,12 +65,3 @@ class GenerateFilePathNode:
         Determine if the node should be re-executed.
         """
         return f"{root_folder}_{project_name}_{episode_name}_{shot_name}_{pass_name}_{toggle_root_folder}_{toggle_project_name}_{toggle_episode_name}_{toggle_shot_name}_{toggle_pass_name}"
-
-
-NODE_CLASS_MAPPINGS = {
-    "GenerateFilePathNode": GenerateFilePathNode,
-}
-
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "GenerateFilePathNode": "Generate File Path Node",
-}

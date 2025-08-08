@@ -1,89 +1,186 @@
-# APZmedia File Name Nodes
+# APZmedia Naming Tools
 
 ## Overview
-This package provides a set of custom nodes for ComfyUI that streamline text processing for VFX file naming and file path generation. The nodes include the **Clean File Name Node**, **Generate File Path Node**, and **APZmedia Standard Filename Builder**, all designed to fit common conventions in VFX pipelines. These nodes help sanitize text, create valid filenames, and generate file paths based on typical VFX directory structures, making it easier to manage large-scale projects.
+This package provides a comprehensive set of naming tools for ComfyUI that streamline text processing for VFX file naming, file path generation, and primitive value selection. The tools include the **Clean File Name Node**, **Generate File Path Node**, **APZmedia Standard Filename Builder**, and **Primitive Selector Nodes**, all designed to fit common conventions in VFX pipelines. These tools help sanitize text, create valid filenames, generate file paths, and provide primitive values for tagging and other operations.
 
 ## Features
 
-### 1. **Clean File Name Node**
-- **Input Text**: Accepts a string input to be sanitized.
-- **Replacement Character**: Allows specification of a character to replace invalid characters.
-- **Invalid Characters**: A precompiled list of characters to be removed from the input text.
-- **Character Limit**: Truncates the cleaned text to a specified maximum length.
-- **Prefix**: Adds a user-defined prefix to the resulting cleaned text.
+### 1. **APZmedia Clean File Name Node**
+- **Text Sanitization**: Removes invalid characters and replaces them with specified characters
+- **Accent Handling**: Converts accented characters to their unaccented equivalents
+- **Character Limit Control**: Truncates text to specified maximum length
+- **Prefix Support**: Adds user-defined prefix to cleaned text
+- **Customizable Replacement**: Specifies character to replace invalid characters
 
-### 2. **Generate File Path Node**
-- **VFX Folder Structure Customization**: Dynamically generates a file path based on the specified project components, such as the root folder, project name, episode name, shot name, and pass type.
-- **Toggle Components**: Each component (e.g., project name, episode name, shot name) can be toggled to be included or excluded, providing flexibility in generating the path structure.
-- **OS-Compatible Paths**: Automatically uses the correct file path separator for the operating system (e.g., `/` for Unix-based systems and `\` for Windows).
-- **Flexible Path Generation**: Build paths that match your project needs, such as `/root/project/episode/shot/pass`, based on the components you choose to include.
+### 2. **APZmedia Generate File Path**
+- **VFX Folder Structure**: Dynamically generates file paths based on project components
+- **Toggle Components**: Each component can be included or excluded for flexible path generation
+- **OS-Compatible Paths**: Automatically uses correct file path separators for the operating system
+- **Flexible Structure**: Build paths like `/root/project/episode/shot/pass` based on your needs
 
 ### 3. **APZmedia Standard Filename Builder**
-- **Customizable Segments**: Concatenate any combination of project name, episode name, shot name, and pass name.
-- **Flexible Inclusion**: Each segment can be toggled on or off, allowing users to include only the relevant components.
-- **Delimiter Control**: Specify a custom delimiter to separate segments in the filename (e.g., hyphen, underscore, etc.).
-- **Standardized Naming**: Helps maintain consistent file naming across projects, shots, and passes.
+- **Customizable Segments**: Concatenate project, episode, shot, and pass names
+- **Flexible Inclusion**: Toggle segments on/off to include only relevant components
+- **Delimiter Control**: Specify custom delimiters (hyphen, underscore, etc.)
+- **Standardized Naming**: Maintain consistent file naming across projects
+
+### 4. **APZmedia Primitive Selector**
+- **Multiple Selection Types**: Text, Number, Date, and Custom options
+- **Date Formatting**: Multiple date formats (YYYY-MM-DD, MM-DD-YYYY, DD-MM-YYYY, YYYYMMDD)
+- **Custom Options**: Dropdown from comma-separated options
+- **Formatting Control**: Prefix, suffix, and separator options
+- **Dual Output**: Raw selection and formatted text
+
+### 5. **APZmedia Simple Primitive**
+- **Basic Value Types**: Text, Number, Float, and Boolean inputs
+- **Multiple Outputs**: All input types as separate outputs
+- **Boolean Conversion**: Converts boolean to text representation
+- **Simple Interface**: Straightforward primitive value selection
 
 ## Input and Output Types
 
-### **Clean File Name Node**
+### **APZmedia Clean File Name Node**
 - **Input Types**:
-  - `input_text` (STRING): The text to be cleaned.
-  - `replacement_char` (STRING): Character to replace invalid characters (default: `-`).
-  - `invalid_chars` (STRING): Characters to be removed (default: ` #%&{}\\<>*?/ $!'\":@+`|=.`, emojis, and alt codes).
-  - `char_limit` (INT): Maximum length of the output string (default: 255).
-  - `prefix` (STRING): Prefix to prepend to the filename.
+  - `input_text` (STRING): The text to be cleaned
+  - `replacement_char` (STRING): Character to replace invalid characters (default: `-`)
+  - `invalid_chars` (STRING): Characters to be removed (default: ` #%&{}\\<>*?/ $!'\":@+`|=.`)
+  - `prefix` (STRING): Prefix to prepend to the filename
+  - `char_limit` (INT): Maximum length of the output string (default: 255)
   
 - **Output Types**:
-  - `cleaned_text` (STRING): The sanitized and truncated text string.
+  - `cleaned_text` (STRING): The sanitized and truncated text string
 
-### **Generate File Path Node**
+### **APZmedia Generate File Path**
 - **Input Types**:
-  - `root_folder` (STRING): The root directory for the project (e.g., `/mnt/projects`).
-  - `project_name` (STRING): The name of the VFX project or show (e.g., `Starwars`).
-  - `episode_name` (STRING): The episode or sequence name (optional).
-  - `shot_name` (STRING): The shot number or identifier (e.g., `0010`).
-  - `pass_name` (STRING): The type of pass (e.g., compositing, animation).
-  - `toggle_root_folder` (INCLUDE/EXCLUDE): Whether to include the root folder in the path.
-  - `toggle_project_name` (INCLUDE/EXCLUDE): Whether to include the project name in the path.
-  - `toggle_episode_name` (INCLUDE/EXCLUDE): Whether to include the episode name in the path.
-  - `toggle_shot_name` (INCLUDE/EXCLUDE): Whether to include the shot name in the path.
-  - `toggle_pass_name` (INCLUDE/EXCLUDE): Whether to include the pass type in the path.
+  - `root_folder` (STRING): The root directory for the project (e.g., `/mnt/projects`)
+  - `project_name` (STRING): The name of the VFX project or show (e.g., `Starwars`)
+  - `episode_name` (STRING): The episode or sequence name (optional)
+  - `shot_name` (STRING): The shot number or identifier (e.g., `0010`)
+  - `pass_name` (STRING): The type of pass (e.g., compositing, animation)
+  - `toggle_root_folder` (INCLUDE/EXCLUDE): Whether to include the root folder
+  - `toggle_project_name` (INCLUDE/EXCLUDE): Whether to include the project name
+  - `toggle_episode_name` (INCLUDE/EXCLUDE): Whether to include the episode name
+  - `toggle_shot_name` (INCLUDE/EXCLUDE): Whether to include the shot name
+  - `toggle_pass_name` (INCLUDE/EXCLUDE): Whether to include the pass type
   
 - **Output Types**:
-  - `generated_path` (STRING): The generated file path based on the selected components and operating system conventions.
+  - `generated_path` (STRING): The generated file path with correct OS separators
 
 ### **APZmedia Standard Filename Builder**
 - **Input Types**:
-  - `project_name` (STRING): The project or show name (optional).
-  - `episode_name` (STRING): The episode or sequence name (optional).
-  - `shot_name` (STRING): The shot number or identifier (e.g., `0010`).
-  - `pass_name` (STRING): The type of pass (e.g., compositing, animation).
-  - `delimiter` (STRING): The character to separate the segments (default: `-`).
-  - `toggle_project_name` (INCLUDE/EXCLUDE): Whether to include the project name in the concatenated file name.
-  - `toggle_episode_name` (INCLUDE/EXCLUDE): Whether to include the episode name in the concatenated file name.
-  - `toggle_shot_name` (INCLUDE/EXCLUDE): Whether to include the shot name in the concatenated file name.
-  - `toggle_pass_name` (INCLUDE/EXCLUDE): Whether to include the pass name in the concatenated file name.
+  - `project_name` (STRING): The project or show name (optional)
+  - `episode_name` (STRING): The episode or sequence name (optional)
+  - `shot_name` (STRING): The shot number or identifier (e.g., `0010`)
+  - `pass_name` (STRING): The type of pass (e.g., compositing, animation)
+  - `delimiter` (STRING): The character to separate segments (default: `-`)
+  - `toggle_project_name` (INCLUDE/EXCLUDE): Whether to include project name
+  - `toggle_episode_name` (INCLUDE/EXCLUDE): Whether to include episode name
+  - `toggle_shot_name` (INCLUDE/EXCLUDE): Whether to include shot name
+  - `toggle_pass_name` (INCLUDE/EXCLUDE): Whether to include pass name
   
 - **Output Types**:
-  - `concatenated_name` (STRING): The concatenated filename based on the selected segments and delimiter.
+  - `concatenated_name` (STRING): The concatenated filename with selected delimiter
+
+### **APZmedia Primitive Selector**
+- **Input Types**:
+  - `selection_type` (TEXT/NUMBER/DATE/CUSTOM): Type of selection to make
+  - `text_selection` (STRING): Text input for text type
+  - `number_selection` (INT): Number input (1-9999) for number type
+  - `date_format` (YYYY-MM-DD/MM-DD-YYYY/DD-MM-YYYY/YYYYMMDD): Date format for date type
+  - `custom_options` (STRING): Comma-separated options for custom type
+  - `custom_selection` (STRING): Selected option from custom options
+  - `prefix` (STRING): Text to add before selection
+  - `suffix` (STRING): Text to add after selection
+  - `separator` (STRING): Character to separate prefix/suffix (default: `_`)
+  
+- **Output Types**:
+  - `selection_text` (STRING): The raw selected value
+  - `formatted_text` (STRING): Selection with prefix/suffix and separator
+
+### **APZmedia Simple Primitive**
+- **Input Types**:
+  - `text_value` (STRING): Text input value
+  - `number_value` (INT): Number input value (1-9999)
+  - `float_value` (FLOAT): Float input value (0.0-1000.0)
+  - `boolean_value` (BOOLEAN): Boolean input value
+  
+- **Output Types**:
+  - `text_output` (STRING): Text value output
+  - `number_output` (INT): Number value output
+  - `float_output` (FLOAT): Float value output
+  - `boolean_text` (STRING): Boolean converted to text ("true"/"false")
 
 ## How They Work
 
-### **Clean File Name Node**
-1. **Replace Invalid Characters**: Replaces invalid characters in the input text with the specified replacement character.
-2. **Remove Invalid Characters**: Removes characters defined in `invalid_chars`.
-3. **Truncate**: Truncates the text to the maximum defined length.
-4. **Prepend Prefix**: Adds the user-defined prefix to the beginning of the cleaned text.
+### **APZmedia Clean File Name Node**
+1. **Accent Conversion**: Converts accented characters to unaccented equivalents
+2. **Space Replacement**: Replaces spaces with the specified replacement character
+3. **Invalid Character Removal**: Removes characters defined in `invalid_chars`
+4. **Consecutive Character Cleanup**: Removes duplicate replacement characters
+5. **Prefix Addition**: Adds the user-defined prefix
+6. **Length Truncation**: Ensures the final text doesn't exceed the character limit
 
-### **Generate File Path Node**
-1. **Segmented Path Construction**: The node allows for building a file path by concatenating different segments (root folder, project name, episode name, shot name, and pass type). Each segment can be included or excluded based on the user's selection.
-2. **Flexible Structure**: You can toggle on or off any part of the path structure, allowing for customized path generation that suits different VFX project workflows.
-3. **OS-Aware**: Automatically generates paths that conform to the path separator required by the operating system (`/` or `\`).
-4. **Output**: The resulting full path is generated based on the included components.
+### **APZmedia Generate File Path**
+1. **Component Selection**: Evaluates which components should be included based on toggles
+2. **Path Assembly**: Builds the path by concatenating selected components
+3. **OS Path Joining**: Uses `os.path.join()` for correct path separators
+4. **Output Generation**: Returns the complete file path
 
 ### **APZmedia Standard Filename Builder**
-1. **Segment Inclusion**: Users specify whether to include the project name, episode name, shot name, and pass name by toggling them on or off.
-2. **Delimiter Selection**: A delimiter (default is a hyphen) is chosen to separate the different segments in the final filename.
-3. **Concatenation**: The selected segments are concatenated in the order specified and joined using the selected delimiter.
-4. **Output**: The node returns a single concatenated filename that adheres to VFX standards or custom naming conventions.
+1. **Segment Evaluation**: Checks which segments should be included based on toggles
+2. **Name Assembly**: Collects all enabled segments into a list
+3. **Delimiter Application**: Joins segments using the specified delimiter
+4. **Output Generation**: Returns the concatenated filename
+
+### **APZmedia Primitive Selector**
+1. **Type Selection**: Determines the base value based on selection type
+2. **Value Processing**: Handles text, number, date, or custom selection logic
+3. **Formatting**: Applies prefix, suffix, and separator if specified
+4. **Dual Output**: Returns both raw and formatted versions
+
+### **APZmedia Simple Primitive**
+1. **Value Passing**: Directly passes input values to outputs
+2. **Type Conversion**: Converts boolean to text representation
+3. **Multiple Outputs**: Provides all input types as separate outputs
+
+## Use Cases
+
+### **Filename Tagging**
+- Use **Primitive Selector** for date stamps: `2024-01-15`
+- Use **Simple Primitive** for version numbers: `v1`, `v2`
+- Use **Clean File Name** to sanitize user input
+- Use **Standard Filename Builder** for structured naming
+
+### **Path Generation**
+- Use **Generate File Path** for VFX pipeline structures
+- Combine with **Primitive Selector** for dynamic path components
+- Use **Simple Primitive** for basic path elements
+
+### **Workflow Integration**
+- Chain multiple nodes for complex naming systems
+- Use primitive outputs as inputs to filename builders
+- Combine with ComfyUI's image generation for automatic file naming
+
+## Installation
+
+1. **Clone or download** this repository to your ComfyUI `custom_nodes` directory
+2. **Install dependencies**: `pip install -e .`
+3. **Restart ComfyUI** to load the new naming tools
+4. **Find tools** in the "APZmedia" category in the node menu
+
+## Dependencies
+
+- `unidecode`: For accent character conversion
+- `ComfyUI`: The main application
+
+## License
+
+MIT License - See LICENSE file for details.
+
+## Author
+
+**Pablo Apiolazza** - [APZmedia](https://github.com/APZmedia)
+
+## Support
+
+For issues, feature requests, or questions, please visit the [GitHub repository](https://github.com/APZmedia/ComfyUI-APZmedia-cleanName-from-string).

@@ -55,7 +55,7 @@ class CleanFileNameNode:
 
     FUNCTION = "clean_text"
 
-    CATEGORY = "Text Processing"
+    CATEGORY = "APZmedia"
 
     def clean_text(self, input_text, replacement_char, invalid_chars, prefix, char_limit):
         if not replacement_char:
@@ -90,11 +90,3 @@ class CleanFileNameNode:
     @classmethod
     def IS_CHANGED(s, input_text, replacement_char, invalid_chars, prefix, char_limit):
         return f"{input_text}_{replacement_char}_{invalid_chars}_{prefix}_{char_limit}"
-
-NODE_CLASS_MAPPINGS = {
-    "CleanFileNameNode": CleanFileNameNode
-}
-
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "CleanFileNameNode": "APZmedia Clean File Name Node"
-}
