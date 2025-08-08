@@ -42,7 +42,7 @@ class APZmediaImageFilename:
                     filename = image._filename
                 elif hasattr(image, 'name'):
                     filename = image.name
-            except:
+            except Exception:
                 pass
         
         # If we found a filename, extract the name without extension
