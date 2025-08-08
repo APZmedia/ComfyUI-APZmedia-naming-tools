@@ -17,4 +17,4 @@ Repository = "https://github.com/APZmedia/ComfyUI-APZmedia-cleanName-from-string
 [tool.comfy]
 PublisherId = "APZmedia"
 DisplayName = "APZmedia Naming Tools"
-Icon = 
+Icon = ""
