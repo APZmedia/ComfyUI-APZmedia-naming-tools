@@ -24,11 +24,17 @@ This package provides a comprehensive set of naming tools for ComfyUI that strea
 - **Delimiter Control**: Specify custom delimiters (hyphen, underscore, etc.)
 - **Standardized Naming**: Maintain consistent file naming across projects
 
-### 4. **APZmedia Primitive**
-- **Multiple Types**: Text, Number, and Date outputs
-- **Date Formatting**: Multiple date formats (YYYY-MM-DD, MM-DD-YYYY, DD-MM-YYYY, YYYYMMDD)
-- **Simple Interface**: Single node for all primitive value types
-- **String Output**: All values output as strings for easy use in filenames
+### 4. **APZmedia Read Widget**
+- **Simple Text Input**: Takes any text input and outputs it as a string
+- **Widget Reading**: Can be used to read values from other nodes' widgets
+- **Clean Interface**: Simple, focused functionality following cg-quicknodes pattern
+- **String Output**: Provides text values for use in naming operations
+
+### 5. **APZmedia Image Filename**
+- **Filename Extraction**: Extracts original filenames from Load Image nodes
+- **Extension Handling**: Provides both full filename and filename without extension
+- **Metadata Access**: Reads filename from image metadata and attributes
+- **Fallback Support**: Handles cases where filename is not available
 
 ## Input and Output Types
 
@@ -74,15 +80,20 @@ This package provides a comprehensive set of naming tools for ComfyUI that strea
 - **Output Types**:
   - `concatenated_name` (STRING): The concatenated filename with selected delimiter
 
-### **APZmedia Primitive**
+### **APZmedia Read Widget**
 - **Input Types**:
-  - `combo` (TEXT/NUMBER/DATE): Type of value to output (dropdown selection)
-  - `text` (STRING): Text input for text type
-  - `number` (INT): Number input (1-9999) for number type
-  - `date_format` (YYYY-MM-DD/MM-DD-YYYY/DD-MM-YYYY/YYYYMMDD): Date format for date type
+  - `text` (STRING): Text input to be output as string
   
 - **Output Types**:
-  - `value` (STRING): The selected value as a string
+  - `text` (STRING): The input text as a string output
+
+### **APZmedia Image Filename**
+- **Input Types**:
+  - `image` (IMAGE): Image input from Load Image node
+  
+- **Output Types**:
+  - `filename` (STRING): The complete filename with extension
+  - `filename_without_ext` (STRING): The filename without extension
 
 ## How They Work
 
@@ -106,27 +117,34 @@ This package provides a comprehensive set of naming tools for ComfyUI that strea
 3. **Delimiter Application**: Joins segments using the specified delimiter
 4. **Output Generation**: Returns the concatenated filename
 
-### **APZmedia Primitive**
-1. **Type Selection**: Determines the output based on the selected type
-2. **Value Processing**: Handles text, number, or date logic
-3. **String Conversion**: Converts all values to strings for filename use
+### **APZmedia Read Widget**
+1. **Text Input**: Accepts any text input
+2. **String Output**: Returns the input as a string output
+3. **Widget Integration**: Can be used to read values from other nodes
+
+### **APZmedia Image Filename**
+1. **Image Analysis**: Examines the image object for filename metadata
+2. **Filename Extraction**: Attempts multiple methods to find the original filename
+3. **Extension Processing**: Separates filename from extension
+4. **Fallback Handling**: Provides "unknown" if no filename is found
 
 ## Use Cases
 
 ### **Filename Tagging**
-- Use **Primitive** for date stamps: `2024-01-15`
-- Use **Primitive** for version numbers: `1`, `2`
+- Use **Read Widget** for text inputs and widget values
 - Use **Clean File Name** to sanitize user input
 - Use **Standard Filename Builder** for structured naming
+- Use **Image Filename** to preserve original image names
 
 ### **Path Generation**
 - Use **Generate File Path** for VFX pipeline structures
-- Combine with **Primitive** for dynamic path components
+- Combine with **Read Widget** for dynamic path components
 
 ### **Workflow Integration**
 - Chain multiple nodes for complex naming systems
-- Use primitive outputs as inputs to filename builders
+- Use Read Widget outputs as inputs to filename builders
 - Combine with ComfyUI's image generation for automatic file naming
+- Extract original filenames and preserve them in new naming schemes
 
 ## Installation
 

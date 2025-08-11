@@ -13,7 +13,7 @@ setup(
             'clean_file_name_node = nodes.APZnamefromtext:CleanFileNameNode',
             'generate_file_path_node = nodes.APZgeneratePathNode:GenerateFilePathNode',  # Corrected this line
             'standard_name_node = nodes.APZfileNameBuilder:APZmediaStandardFilenameBuilder',
-            'primitive_node = nodes.APZprimitive:APZmediaPrimitive',
+            'read_widget_node = nodes.APZreadWidget:APZmediaReadWidget',
             'image_filename_node = nodes.APZimageFilename:APZmediaImageFilename'
         ],
     },
