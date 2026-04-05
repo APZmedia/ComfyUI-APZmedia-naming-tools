@@ -65,6 +65,9 @@ Outputs an integer that steps through a range every time the workflow runs. Set 
 - Configurable step size
 - Wraps cleanly on both ends
 - Resets to min (or max, if decrementing) when ComfyUI restarts — it's a session counter, not a life commitment
+- Each node instance cycles independently — two Cycle Int nodes in the same workflow have separate counters
+- First run outputs the starting value, then advances from there on every subsequent run
+- If you change min/max mid-session and the current value falls outside the new range, it resets to the new starting point rather than doing something dramatic
 
 #### APZmedia Text To Hash
 Converts any text or number into a short, deterministic hash string. Useful for stamping filenames with a unique ID derived from prompt content, or for making your workflow look more serious than it is.
