@@ -6,6 +6,8 @@ Because apparently "untitled_final_FINAL_v3_USE_THIS_ONE.png" is not a valid pip
 
 This is a set of ComfyUI nodes designed to help you name files like a professional instead of like someone who just tabs out of a Finder window and hopes for the best. Built for VFX pipelines but expanded to cover the naming conventions of advertising, fashion, and e-commerce — because every industry has independently invented its own way to almost get this right.
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/pabloapz)
+
 ---
 
 ## Nodes
@@ -122,6 +124,10 @@ MIT — do what you want, just don't blame us.
 
 **Pablo Apiolazza** — [APZmedia](https://github.com/APZmedia)
 
-## Support
+## ☕ Support
+
+If you find these nodes useful, consider buying me a coffee — it helps me keep building and maintaining free tools for the ComfyUI community.
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/pabloapz)
 
 Issues, feature requests, and existential questions about file naming conventions: [GitHub repository](https://github.com/APZmedia/ComfyUI-APZmedia-naming-tools)
