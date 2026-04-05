@@ -58,6 +58,14 @@ Finds and replaces strings based on a dictionary you define, line by line. Becau
 - Accepts any input type, converts to string
 - Outputs replaced text and a replacement count, so you know it actually did something
 
+#### APZmedia Cycle Int
+Outputs an integer that steps through a range every time the workflow runs. Set a min, a max, a step size, and a direction — it cycles forever, wrapping back around when it hits the end. Designed for batch automation so you don't have to manually change a number between runs like some kind of intern.
+
+- Increment or decrement
+- Configurable step size
+- Wraps cleanly on both ends
+- Resets to min (or max, if decrementing) when ComfyUI restarts — it's a session counter, not a life commitment
+
 #### APZmedia Text To Hash
 Converts any text or number into a short, deterministic hash string. Useful for stamping filenames with a unique ID derived from prompt content, or for making your workflow look more serious than it is.
 
