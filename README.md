@@ -35,11 +35,13 @@ Takes a string. Outputs a string. Connects things together so you don't have to 
 
 It's humble. It does its job. It doesn't complain. We should all aspire to be more like the Read Widget.
 
-### 5. APZmedia Image Filename
-Extracts the original filename from a Load Image node, because "ComfyUI_00247_.png" tells you absolutely nothing about what you were doing when you made it.
+### 5. APZmedia Load Image with Filename
+A drop-in replacement for ComfyUI's built-in Load Image node that also tells you what the file is actually called. Because it turns out the standard node throws away that information immediately and never looks back.
 
-- Returns full filename and filename without extension
-- Gracefully handles cases where the filename is missing (returns "unknown", not a stack trace — you're welcome)
+- Same image picker and upload behaviour as the built-in Load Image
+- Outputs `IMAGE` and `MASK` exactly as before, so existing wires still work
+- Also outputs `filename` and `filename_without_ext` as strings, which is the whole point
+- Works because it intercepts the path *before* the tensor is built, which is the only moment the filename still exists
 
 ### 6. APZmedia Dictionary Based String Replacement
 Finds and replaces strings based on a dictionary you define, line by line. Because search-and-replace is a solved problem, and yet here we all are, doing it manually like fools.

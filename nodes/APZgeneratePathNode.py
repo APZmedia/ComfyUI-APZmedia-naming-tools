@@ -53,8 +53,10 @@ class GenerateFilePathNode:
         if toggle_pass_name == "Include" and pass_name:
             path_parts.append(pass_name)
         
-        # Use os.path.join to construct the final path
-        generated_path = os.path.join(*path_parts)
+        # Use os.path.join to construct the final path, then normalize to
+        # forward slashes to match ComfyUI's internal path conventions and
+        # avoid Windows backslash issues in downstream nodes.
+        generated_path = os.path.join(*path_parts).replace(os.sep, "/")
 
         return (generated_path,)
 
