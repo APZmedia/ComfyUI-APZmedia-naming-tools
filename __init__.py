@@ -11,6 +11,7 @@ from .nodes.APZfashionEditorialFilename import APZmediaFashionEditorialFilename
 from .nodes.APZfashionEcomFilename import APZmediaFashionEcomFilename
 from .nodes.APZecomFilename import APZmediaEcomFilename
 from .nodes.APZcycleInt import APZmediaCycleInt
+from .nodes.APZstringStripper import APZmediaStringStripper
 
 NODE_CLASS_MAPPINGS = {
     "CleanFileNameNode": CleanFileNameNode,
@@ -26,6 +27,7 @@ NODE_CLASS_MAPPINGS = {
     "APZmediaFashionEcomFilename": APZmediaFashionEcomFilename,
     "APZmediaEcomFilename": APZmediaEcomFilename,
     "APZmediaCycleInt": APZmediaCycleInt,
+    "APZmediaStringStripper": APZmediaStringStripper,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -42,4 +44,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "APZmediaFashionEcomFilename": "APZmedia Fashion E-com Filename",
     "APZmediaEcomFilename": "APZmedia E-com Filename",
     "APZmediaCycleInt": "APZmedia Cycle Int",
+    "APZmediaStringStripper": "APZmedia String Stripper",
 }

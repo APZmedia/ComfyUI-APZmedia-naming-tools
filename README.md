@@ -76,6 +76,42 @@ Converts any text or number into a short, deterministic hash string. Useful for 
 - Configurable output length: 1–64 characters
 - Same input always produces the same output. That's what deterministic means.
 
+#### APZmedia String Stripper
+Extracts one or more segments from a filename string based on a naming pattern. Designed to pair with **APZmedia Load Image with Filename** — feed in the `filename_without_ext` output, define the pattern, get back the part you actually need.
+
+If the input doesn't match the pattern, the node passes the original string through unchanged and sets `matched` to `False`, so the rest of your workflow doesn't silently break.
+
+**Two modes, toggled per node:**
+
+**Simple** — define the pattern using your actual delimiter. The node auto-detects the delimiter from the pattern, splits both pattern and input on it, maps slot names to values, and returns the ones you asked for.
+
+```
+pattern:        project-episode-shot-pass
+input:          ACME-EP01-SH010-beauty
+terms_to_keep:  episode,shot
+output_delim:   -
+→ result:       EP01-SH010   matched: True
+
+# Segment count mismatch → passthrough
+input:          ACME-EP01-beauty
+→ result:       ACME-EP01-beauty   matched: False
+```
+
+**Regex** — supply a regex with capture groups, reference them by number (1-based) or by name if using named groups (`(?P<name>...)`).
+
+```
+pattern:        ^(.+?)-v(\d+)-(.+)$
+terms_to_keep:  1,2
+input:          hero_shot-v003-final
+output_delim:   -
+→ result:       hero_shot-v003   matched: True
+```
+
+- `output_delimiter` is independent of the source delimiter — you can extract with `-` and rejoin with `_`
+- Multiple terms are joined in the order you list them
+- Named capture groups work: `terms_to_keep: ver` with `(?P<ver>\d+)`
+- Invalid regex or optional groups that didn't match → passthrough + `matched: False`
+
 ---
 
 ### Industry Naming Nodes
